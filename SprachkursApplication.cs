@@ -170,9 +170,9 @@ namespace Sprachkursverwaltung
         public void editCourse(int id, int language)
         {
             List<OleDbParameter> parameters = new List<OleDbParameter>();
-            parameters.Add(new OleDbParameter("@Language", language));
+            parameters.Add(new OleDbParameter("@CourseLanguage", language));
             parameters.Add(new OleDbParameter("@ID", id));
-            update("UPDATE course SET Language = @Language WHERE ID = @ID", parameters);
+            update("UPDATE course SET CourseLanguage = @CourseLanguage WHERE ID = @ID", parameters);
             foreach (Course course in courses)
             {
                 if (course.id == id)
