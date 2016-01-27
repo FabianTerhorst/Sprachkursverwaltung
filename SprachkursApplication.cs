@@ -81,9 +81,11 @@ namespace Sprachkursverwaltung
                 cmd.Parameters.Add(parameters[i]);
             }
             //cmd.ExecuteNonQuery();
-            int modified = (int)cmd.ExecuteScalar();
+            int? modified = (int?)cmd.ExecuteScalar();
             //connection.Close();
-            return modified;
+            if (modified == null)
+                return 0;
+            return (int)modified;
         }
 
         public void load()
@@ -92,7 +94,7 @@ namespace Sprachkursverwaltung
             foreach (DataRow row in memberTable.Rows)
             {
                 Member member = new Member();
-                member.name = row[0].ToString();
+                member.name = row[1].ToString();
                 members.Add(member);
             }
 
@@ -100,17 +102,17 @@ namespace Sprachkursverwaltung
             foreach (DataRow row in courseTable.Rows)
             {
                 Course course = new Course();
-                course.name = row[0].ToString();
+                course.name = row[1].ToString();
                 courses.Add(course);
             }
 
-            DataTable languageTable = query("SELECT * FROM language");
+            /*DataTable languageTable = query("SELECT * FROM language");
             foreach (DataRow row in languageTable.Rows)
             {
                 Language language = new Language();
                 language.name = row[0].ToString();
                 languages.Add(language);
-            }
+            }*/
         }
 
         public void addCourse(String name)
@@ -133,14 +135,14 @@ namespace Sprachkursverwaltung
         {
             List<OleDbParameter> parameters = new List<OleDbParameter>();
             parameters.Add(new OleDbParameter("@Forename", name));
-            return insert("insert (Forename) into course values (@Forename)", parameters);
+            return insert("INSERT INTO course (Forename) VALUES (@Forename)", parameters);
         }
 
         public int saveMember(String name)
         {
             List<OleDbParameter> parameters = new List<OleDbParameter>();
             parameters.Add(new OleDbParameter("@Forename", name));
-            return insert("insert (Forename) into member values (@Forename)", parameters);
+            return insert("INSERT INTO member (Forename) VALUES (@Forename)", parameters);
         }
 
         public void editMember(int id, String name)

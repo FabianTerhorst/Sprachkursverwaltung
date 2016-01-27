@@ -38,7 +38,7 @@ namespace Sprachkursverwaltung
 
         private void members_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(members.SelectedItems != null)
+            if(members.SelectedItems != null && members.SelectedItems.Count > 0)
             {
                 editBoxMembers.Text = members.SelectedItems[0].Text;
             }
@@ -46,7 +46,7 @@ namespace Sprachkursverwaltung
 
         private void courses_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (courses.SelectedItems != null)
+            if (courses.SelectedItems != null && members.SelectedItems.Count > 0)
             {
                 editBoxMembers.Text = courses.SelectedItems[0].Text;
             }
