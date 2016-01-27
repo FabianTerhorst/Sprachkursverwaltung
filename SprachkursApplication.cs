@@ -65,10 +65,14 @@ namespace Sprachkursverwaltung
             return dataTable;
         }
 
-        public void update(String sql)
+        public void update(String sql, List<OleDbParameter> parameters)
         {
             OleDbCommand cmd = connection.CreateCommand();
             cmd.CommandText = sql;
+            for (int i = 0; i < parameters.Count; i++)
+            {
+                cmd.Parameters.Add(parameters[i]);
+            }
             cmd.ExecuteNonQuery();
             //connection.Close();
         }
@@ -147,7 +151,10 @@ namespace Sprachkursverwaltung
 
         public void editMember(int id, String name)
         {
-            update("UPDATE member SET forename = " + name + " WHERE id = " + id);
+            List<OleDbParameter> parameters = new List<OleDbParameter>();
+            parameters.Add(new OleDbParameter("@Forename", name));
+            parameters.Add(new OleDbParameter("@ID", id));
+            update("UPDATE member SET forename = @Forename WHERE id = @ID", parameters);
             foreach (Member member in members)
             {
                 if (member.id == id)
@@ -159,7 +166,10 @@ namespace Sprachkursverwaltung
 
         public void editCourse(int id, String name)
         {
-            update("UPDATE course SET forename = " + name + " WHERE id = " + id);
+            List<OleDbParameter> parameters = new List<OleDbParameter>();
+            parameters.Add(new OleDbParameter("@Forename", name));
+            parameters.Add(new OleDbParameter("@ID", id));
+            update("UPDATE course SET forename = @Forename WHERE id = @ID", parameters);
             foreach (Member member in members)
             {
                 if (member.id == id)
