@@ -61,9 +61,9 @@ namespace Sprachkursverwaltung
 
         private void courses_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (courses.SelectedItems != null && members.SelectedItems.Count > 0)
+            if (courses.SelectedItems != null && courses.SelectedItems.Count > 0)
             {
-                editBoxMembers.Text = courses.SelectedItems[0].Text;
+                editBoxCourses.Text = courses.SelectedItems[0].Text;
             }
         }
 
