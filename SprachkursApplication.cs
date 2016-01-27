@@ -112,7 +112,7 @@ namespace Sprachkursverwaltung
                 courses.Add(course);
             }
 
-            DataTable languageTable = query("SELECT * FROM course_language");
+            DataTable languageTable = query("SELECT * FROM courselanguage");
             foreach (DataRow row in languageTable.Rows)
             {
                 Language language = new Language();
