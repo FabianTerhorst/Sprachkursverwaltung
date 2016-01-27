@@ -17,11 +17,19 @@ namespace Sprachkursverwaltung
         public Form1()
         {
             InitializeComponent();
+            updateUI();
+        }
+
+        private void updateUI()
+        {
+            languages.Items.Clear();
+            members.Items.Clear();
+            courses.Items.Clear();
             foreach (Language language in SprachkursApplication.Instance.languages)
             {
                 languages.Items.Add(language.name);
             }
-            foreach(Member member in SprachkursApplication.Instance.members)
+            foreach (Member member in SprachkursApplication.Instance.members)
             {
                 members.Items.Add(member.name);
             }
@@ -33,12 +41,14 @@ namespace Sprachkursverwaltung
 
         private void courseAdd_Click(object sender, EventArgs e)
         {
-            SprachkursApplication.Instance.addCourse(courseName.Text);
+            SprachkursApplication.Instance.addCourse(languages.SelectedIndex);
+            updateUI();
         }
 
         private void memberAdd_Click(object sender, EventArgs e)
         {
             SprachkursApplication.Instance.addMember(memberName.Text);
+            updateUI();
         }
 
         private void members_SelectedIndexChanged(object sender, EventArgs e)
@@ -63,6 +73,7 @@ namespace Sprachkursverwaltung
             {
                 Member member = SprachkursApplication.Instance.members[members.SelectedIndices[0]];
                 SprachkursApplication.Instance.editMember(member.id, editBoxMembers.Text);
+                updateUI();
             }
         }
 
@@ -71,7 +82,8 @@ namespace Sprachkursverwaltung
             if (courses.SelectedItems != null)
             {
                 Course course = SprachkursApplication.Instance.courses[courses.SelectedIndices[0]];
-                SprachkursApplication.Instance.editCourse(course.id, editBoxCourses.Text);
+                SprachkursApplication.Instance.editCourse(course.id, Int32.Parse(editBoxCourses.Text));
+                updateUI();
             }
         }
     }

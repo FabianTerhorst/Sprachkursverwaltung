@@ -122,10 +122,10 @@ namespace Sprachkursverwaltung
             }
         }
 
-        public void addCourse(String name)
+        public void addCourse(int name)
         {
             Course course = new Course();
-            course.name = name;
+            course.name = name.ToString();
             course.id = saveCourse(name);
             courses.Add(course);
         }
@@ -138,11 +138,11 @@ namespace Sprachkursverwaltung
             members.Add(member);
         }
 
-        public int saveCourse(String name)
+        public int saveCourse(int name)
         {
             List<OleDbParameter> parameters = new List<OleDbParameter>();
-            parameters.Add(new OleDbParameter("@Language", name));
-            return insert("INSERT INTO course (Language) VALUES (@Language)", parameters);
+            parameters.Add(new OleDbParameter("@Courselanguage", name));
+            return insert("INSERT INTO course (Courselanguage) VALUES (@Courselanguage)", parameters);
         }
 
         public int saveMember(String name)
@@ -167,17 +167,17 @@ namespace Sprachkursverwaltung
             }
         }
 
-        public void editCourse(int id, String name)
+        public void editCourse(int id, int language)
         {
             List<OleDbParameter> parameters = new List<OleDbParameter>();
-            parameters.Add(new OleDbParameter("@Forename", name));
+            parameters.Add(new OleDbParameter("@Language", language));
             parameters.Add(new OleDbParameter("@ID", id));
-            update("UPDATE course SET Forename = @Forename WHERE ID = @ID", parameters);
-            foreach (Member member in members)
+            update("UPDATE course SET Language = @Language WHERE ID = @ID", parameters);
+            foreach (Course course in courses)
             {
-                if (member.id == id)
+                if (course.id == id)
                 {
-                    member.name = name;
+                    course.name = language.ToString();
                 }
             }
         }
