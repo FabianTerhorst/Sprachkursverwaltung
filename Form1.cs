@@ -40,7 +40,7 @@ namespace Sprachkursverwaltung
         {
             if(members.SelectedItems != null)
             {
-                editBox.Text = members.SelectedItems[0].Text;
+                editBoxMembers.Text = members.SelectedItems[0].Text;
             }
         }
 
@@ -48,7 +48,25 @@ namespace Sprachkursverwaltung
         {
             if (courses.SelectedItems != null)
             {
-                editBox.Text = courses.SelectedItems[0].Text;
+                editBoxMembers.Text = courses.SelectedItems[0].Text;
+            }
+        }
+
+        private void saveMember_Click(object sender, EventArgs e)
+        {
+            if (members.SelectedItems != null)
+            {
+                Member member = SprachkursApplication.Instance.members[members.SelectedIndices[0]];
+                SprachkursApplication.Instance.editMember(member.id, editBoxMembers.Text);
+            }
+        }
+
+        private void saveCourse_Click(object sender, EventArgs e)
+        {
+            if (courses.SelectedItems != null)
+            {
+                Course course = SprachkursApplication.Instance.courses[courses.SelectedIndices[0]];
+                SprachkursApplication.Instance.editCourse(course.id, editBoxCourses.Text);
             }
         }
     }

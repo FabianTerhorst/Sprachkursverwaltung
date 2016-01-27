@@ -39,7 +39,10 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.K = new System.Windows.Forms.Label();
             this.courses = new System.Windows.Forms.ListView();
-            this.editBox = new System.Windows.Forms.TextBox();
+            this.editBoxMembers = new System.Windows.Forms.TextBox();
+            this.editBoxCourses = new System.Windows.Forms.TextBox();
+            this.saveCourse = new System.Windows.Forms.Button();
+            this.saveMember = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -142,19 +145,49 @@
             this.courses.UseCompatibleStateImageBehavior = false;
             this.courses.SelectedIndexChanged += new System.EventHandler(this.courses_SelectedIndexChanged);
             // 
-            // editBox
+            // editBoxMembers
             // 
-            this.editBox.Location = new System.Drawing.Point(354, 161);
-            this.editBox.Name = "editBox";
-            this.editBox.Size = new System.Drawing.Size(100, 20);
-            this.editBox.TabIndex = 12;
+            this.editBoxMembers.Location = new System.Drawing.Point(313, 137);
+            this.editBoxMembers.Name = "editBoxMembers";
+            this.editBoxMembers.Size = new System.Drawing.Size(100, 20);
+            this.editBoxMembers.TabIndex = 12;
+            // 
+            // editBoxCourses
+            // 
+            this.editBoxCourses.Location = new System.Drawing.Point(313, 182);
+            this.editBoxCourses.Name = "editBoxCourses";
+            this.editBoxCourses.Size = new System.Drawing.Size(100, 20);
+            this.editBoxCourses.TabIndex = 13;
+            // 
+            // saveCourse
+            // 
+            this.saveCourse.Location = new System.Drawing.Point(419, 180);
+            this.saveCourse.Name = "saveCourse";
+            this.saveCourse.Size = new System.Drawing.Size(75, 23);
+            this.saveCourse.TabIndex = 14;
+            this.saveCourse.Text = "Speichern";
+            this.saveCourse.UseVisualStyleBackColor = true;
+            this.saveCourse.Click += new System.EventHandler(this.saveCourse_Click);
+            // 
+            // saveMember
+            // 
+            this.saveMember.Location = new System.Drawing.Point(419, 137);
+            this.saveMember.Name = "saveMember";
+            this.saveMember.Size = new System.Drawing.Size(75, 23);
+            this.saveMember.TabIndex = 15;
+            this.saveMember.Text = "Speichern";
+            this.saveMember.UseVisualStyleBackColor = true;
+            this.saveMember.Click += new System.EventHandler(this.saveMember_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(808, 361);
-            this.Controls.Add(this.editBox);
+            this.Controls.Add(this.saveMember);
+            this.Controls.Add(this.saveCourse);
+            this.Controls.Add(this.editBoxCourses);
+            this.Controls.Add(this.editBoxMembers);
             this.Controls.Add(this.courses);
             this.Controls.Add(this.K);
             this.Controls.Add(this.memberName);
@@ -188,7 +221,10 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label K;
         private System.Windows.Forms.ListView courses;
-        private System.Windows.Forms.TextBox editBox;
+        private System.Windows.Forms.TextBox editBoxMembers;
+        private System.Windows.Forms.TextBox editBoxCourses;
+        private System.Windows.Forms.Button saveCourse;
+        private System.Windows.Forms.Button saveMember;
     }
 }
 
