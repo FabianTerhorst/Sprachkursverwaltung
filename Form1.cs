@@ -21,8 +21,13 @@ namespace Sprachkursverwaltung
             {
                 languages.Items.Add(language.name);
             }
-            foreach(Member member in SprachkursApplication.Instance.members){
+            foreach(Member member in SprachkursApplication.Instance.members)
+            {
                 members.Items.Add(member.name);
+            }
+            foreach (Course course in SprachkursApplication.Instance.courses)
+            {
+                courses.Items.Add(course.name);
             }
         }
 

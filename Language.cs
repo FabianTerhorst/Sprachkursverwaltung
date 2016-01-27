@@ -8,7 +8,7 @@ namespace Sprachkursverwaltung
 {
     public class Language
     {
-
+        public int id;
         public String name;
 
         public Language()

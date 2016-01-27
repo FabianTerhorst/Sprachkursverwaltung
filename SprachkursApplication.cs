@@ -98,6 +98,7 @@ namespace Sprachkursverwaltung
             foreach (DataRow row in memberTable.Rows)
             {
                 Member member = new Member();
+                member.id = (int)row[0];
                 member.name = row[1].ToString();
                 members.Add(member);
             }
@@ -106,17 +107,19 @@ namespace Sprachkursverwaltung
             foreach (DataRow row in courseTable.Rows)
             {
                 Course course = new Course();
+                course.id = (int)row[0];
                 course.name = row[1].ToString();
                 courses.Add(course);
             }
 
-            /*DataTable languageTable = query("SELECT * FROM language");
+            DataTable languageTable = query("SELECT * FROM course_language");
             foreach (DataRow row in languageTable.Rows)
             {
                 Language language = new Language();
-                language.name = row[0].ToString();
+                language.id = (int)row[0];
+                language.name = row[1].ToString();
                 languages.Add(language);
-            }*/
+            }
         }
 
         public void addCourse(String name)
@@ -138,8 +141,8 @@ namespace Sprachkursverwaltung
         public int saveCourse(String name)
         {
             List<OleDbParameter> parameters = new List<OleDbParameter>();
-            parameters.Add(new OleDbParameter("@Forename", name));
-            return insert("INSERT INTO course (Forename) VALUES (@Forename)", parameters);
+            parameters.Add(new OleDbParameter("@Language", name));
+            return insert("INSERT INTO course (Language) VALUES (@Language)", parameters);
         }
 
         public int saveMember(String name)
@@ -154,7 +157,7 @@ namespace Sprachkursverwaltung
             List<OleDbParameter> parameters = new List<OleDbParameter>();
             parameters.Add(new OleDbParameter("@Forename", name));
             parameters.Add(new OleDbParameter("@ID", id));
-            update("UPDATE member SET forename = @Forename WHERE id = @ID", parameters);
+            update("UPDATE member SET Forename = @Forename WHERE ID = @ID", parameters);
             foreach (Member member in members)
             {
                 if (member.id == id)
@@ -169,7 +172,7 @@ namespace Sprachkursverwaltung
             List<OleDbParameter> parameters = new List<OleDbParameter>();
             parameters.Add(new OleDbParameter("@Forename", name));
             parameters.Add(new OleDbParameter("@ID", id));
-            update("UPDATE course SET forename = @Forename WHERE id = @ID", parameters);
+            update("UPDATE course SET Forename = @Forename WHERE ID = @ID", parameters);
             foreach (Member member in members)
             {
                 if (member.id == id)
